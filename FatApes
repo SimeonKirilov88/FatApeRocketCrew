@@ -1272,7 +1272,7 @@ contract FatApes is ERC721Enumerable, Ownable {
      
     setBaseURI(_initBaseURI);
    
-    mint(msg.sender, 200);
+    mint(msg.sender, 50);
   }
 
   // internal
