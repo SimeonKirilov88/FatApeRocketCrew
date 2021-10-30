@@ -9,7 +9,7 @@
 *    ╚══════╝ ╚═════╝ ╚═╝         ╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝
 *                                                                
  *
- * 10,000 Sup Birds are gonna fly to the MetaVersa
+ * 5,000 Sup Birds are gonna fly to the MetaVersa
  *
  * Become a Sup Birds owner 
  *
@@ -1253,8 +1253,8 @@ contract SupBirds is ERC721Enumerable, Ownable {
 
   string public baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 0.08 ether;
-  uint256 public maxSupply = 10000;
+  uint256 public cost = 0.05 ether;
+  uint256 public maxSupply = 5000;
   uint256 public maxMintAmount = 50;
   bool public paused = false;
   mapping(address => bool) public whitelisted;
