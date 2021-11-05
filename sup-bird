@@ -1253,7 +1253,7 @@ contract SupBirds is ERC721Enumerable, Ownable {
 
   string public baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 0.05 ether;
+  uint256 public cost = 0.08 ether;
   uint256 public maxSupply = 5000;
   uint256 public maxMintAmount = 50;
   bool public paused = false;
@@ -1267,7 +1267,7 @@ contract SupBirds is ERC721Enumerable, Ownable {
      
     setBaseURI(_initBaseURI);
    
-    mint(msg.sender, 50);
+    mint(msg.sender, 20);
   }
 
   // internal
