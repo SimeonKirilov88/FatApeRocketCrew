@@ -6,7 +6,9 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract SupCRO is ERC20, ERC20Burnable, Ownable {
-    constructor() ERC20("SupCRO", "SUP") {}
+    constructor() ERC20("SupCRO", "SUP") {
+      _mint(msg.sender, 1000 * 10 ** decimals());
+    }
 
 }
     
