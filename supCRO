@@ -19,7 +19,7 @@ contract SupCRO is ERC20, Ownable {
     
     uint256 public cost = 500 ether;
     uint256 public maxSupply = 10000000;
-    uint256 public maxMintAmount = 1000;
+    uint256 public maxMintAmount = 10000;
 
     function setCost(uint256 _newCost) public onlyOwner() {
         cost = _newCost;
