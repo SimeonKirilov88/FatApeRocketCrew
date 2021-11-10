@@ -1,20 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
-import "@openzeppelin/contracts-upgradeable@4.3.2/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable@4.3.2/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable@4.3.2/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract SupCRO is Initializable, ERC20Upgradeable, OwnableUpgradeable {
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {}
-    
-     function initialize() initializer public {
-        __ERC20_init("SupCRO", "SUP");
-        __Ownable_init();
-        _mint(msg.sender, 1000 * 10 ** decimals());
-    }
-        
+contract SupCRO is ERC20, ERC20Burnable, Ownable {
+    constructor() ERC20("SupCRO", "SUP") {}
+
+}
     
     uint256 public cost = 500 ether;
     uint256 public maxSupply = 10000000;
