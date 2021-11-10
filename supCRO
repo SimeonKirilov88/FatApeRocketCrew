@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
+
+import "@openzeppelin/contracts-upgradeable@4.3.2/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable@4.3.2/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable@4.3.2/proxy/utils/Initializable.sol";
+
+contract SupCRO is Initializable, ERC20Upgradeable, OwnableUpgradeable {
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() initializer {}
+    
+     function initialize() initializer public {
+        __ERC20_init("SupCRO", "SUP");
+        __Ownable_init();
+        _mint(msg.sender, 1000 * 10 ** decimals());
+    }
+        
+    
+    uint256 public cost = 100 ether;
+    uint256 public maxSupply = 10000000;
+    uint256 public maxMintAmount = 1000;
+
+    function setCost(uint256 _newCost) public onlyOwner() {
+        cost = _newCost;
+    }
+
+    function mintAdmin(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+    
+    
+    function mint(address _to, uint256 _mintAmount) public payable {
+        uint256 supply = totalSupply();
+        require(_mintAmount > 0);
+        require(_mintAmount <= maxMintAmount);
+        require(supply + _mintAmount <= maxSupply);
+    
+        if (msg.sender != owner()) {
+            
+              require(msg.value >= cost * _mintAmount);
+            
+        }
+    
+        for (uint256 i = 1; i <= _mintAmount; i++) {
+          _mint(_to, supply + i);
+        }
+    }
+    
+    
+    
+    function withdraw() public payable onlyOwner {
+        require(payable(msg.sender).send(address(this).balance));
+      }
+
+}
