@@ -16,7 +16,7 @@ contract SupCRO is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     }
         
     
-    uint256 public cost = 100 ether;
+    uint256 public cost = 500 ether;
     uint256 public maxSupply = 10000000;
     uint256 public maxMintAmount = 1000;
 
@@ -25,6 +25,10 @@ contract SupCRO is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     }
 
     function mintAdmin(address to, uint256 amount) public onlyOwner {
+        uint256 supply = totalSupply();
+        require(amount > 0);
+        require(amount <= maxMintAmount);
+        require(supply + amount <= maxSupply);
         _mint(to, amount);
     }
     
@@ -50,6 +54,6 @@ contract SupCRO is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     
     function withdraw() public payable onlyOwner {
         require(payable(msg.sender).send(address(this).balance));
-      }
+    }
 
 }
