@@ -9,11 +9,7 @@ contract SupCRO is ERC20, Ownable {
     
     
   
-    constructor(
-           string memory _name,
-           string memory _symbol
-           
-    ) ERC20("_name", "_symbol") {
+    constructor() ERC20("SUPCRO", "SUP") {
       
       _mint(msg.sender, 10000 * 10 ** decimals());
       
